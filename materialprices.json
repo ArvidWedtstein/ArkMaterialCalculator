@@ -1,0 +1,37 @@
+{
+    "auto_turret": {
+        "metal": 0,
+        "cementing_paste": 0,
+        "polymer": 0,
+        "electronics": 0,
+        "silica_pearls": 0,
+        "element": 0
+    },
+    "heavy_turret": {
+        "gunpowder": 0,
+        "metal": 0,
+        "cementing_paste": 0,
+        "polymer": 0,
+        "electronics": 0,
+        "silica_pearls": 0,
+        "element": 0
+    },
+    "tek_turret": {
+        "gunpowder": 0,
+        "metal": 0,
+        "cementing_paste": 0,
+        "polymer": 0,
+        "electronics": 0,
+        "silica_pearls": 0,
+        "element": 0
+    },
+    "advanced_bullet": {
+        "gunpowder": 0,
+        "metal": 0,
+        "cementing_paste": 0,
+        "polymer": 0,
+        "electronics": 0,
+        "silica_pearls": 0,
+        "element": 0
+    }
+}
