@@ -74,10 +74,24 @@ module.exports = {
     if (Number(heavy_turrets) > 0) {
         console.log('Heavy Turrets Cost'); 
         console.table(heavy_turret_cost)
+
+        if (Number(bullets_per_heavy_turret) > 0) {
+            Object.entries(heavy_turret_bullet_cost).forEach((i) => {
+                const [key, val] = i
+                total_cost[key] = (total_cost[key] || 0) + val
+            });
+        }
     }
     if (Number(tek_turrets) > 0) {
         console.log('Tek Turrets Cost'); 
         console.table(tek_turret_cost)
+
+        if (Number(shards_per_tek_turret) > 0) {
+            Object.entries(tek_turret_shard_cost).forEach((i) => {
+                const [key, val] = i
+                total_cost[key] = (total_cost[key] || 0) + val
+            });
+        }
     }
 
     // if (bullets_per_auto_turret > 0) console.table(auto_turret_bullet_cost)
@@ -104,19 +118,9 @@ module.exports = {
             total_cost[key] = (total_cost[key] || 0) + val
         });
     }
-    if (Number(bullets_per_heavy_turret) > 0) {
-        Object.entries(heavy_turret_bullet_cost).forEach((i) => {
-            const [key, val] = i
-            total_cost[key] = (total_cost[key] || 0) + val
-        });
-    }
 
-    if (Number(shards_per_tek_turret) > 0) {
-        Object.entries(tek_turret_shard_cost).forEach((i) => {
-            const [key, val] = i
-            total_cost[key] = (total_cost[key] || 0) + val
-        });
-    }
+
+
 
     console.log(total_cost)
   }
