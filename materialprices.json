@@ -1,37 +1,38 @@
 {
-    "auto_turret": {
-        "metal": 0,
-        "cementing_paste": 0,
-        "polymer": 0,
-        "electronics": 0,
-        "silica_pearls": 0,
-        "element": 0
-    },
-    "heavy_turret": {
-        "gunpowder": 0,
-        "metal": 0,
-        "cementing_paste": 0,
-        "polymer": 0,
-        "electronics": 0,
-        "silica_pearls": 0,
-        "element": 0
-    },
-    "tek_turret": {
-        "gunpowder": 0,
-        "metal": 0,
-        "cementing_paste": 0,
-        "polymer": 0,
-        "electronics": 0,
-        "silica_pearls": 0,
-        "element": 0
-    },
-    "advanced_bullet": {
-        "gunpowder": 0,
-        "metal": 0,
-        "cementing_paste": 0,
-        "polymer": 0,
-        "electronics": 0,
-        "silica_pearls": 0,
-        "element": 0
-    }
+  "auto_turret": {
+    "gunpowder": 0,
+    "metal": 140,
+    "cementing_paste": 100,
+    "polymer": 20,
+    "electronics": 70,
+    "silica_pearls": 0,
+    "element": 0
+  },
+  "heavy_turret": {
+    "gunpowder": 0,
+    "metal": 400,
+    "cementing_paste": 150,
+    "polymer": 50,
+    "electronics": 200,
+    "silica_pearls": 0,
+    "element": 0
+  },
+  "tek_turret": {
+    "gunpowder": 0,
+    "metal": 100,
+    "cementing_paste": 50,
+    "polymer": 50,
+    "electronics": 100,
+    "silica_pearls": 0,
+    "element": 3
+  },
+  "advanced_bullet": {
+    "gunpowder": 18,
+    "metal": 2,
+    "cementing_paste": 0,
+    "polymer": 0,
+    "electronics": 0,
+    "silica_pearls": 0,
+    "element": 0
+  }
 }
