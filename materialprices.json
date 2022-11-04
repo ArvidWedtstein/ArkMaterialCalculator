@@ -34,5 +34,12 @@
     "electronics": 0,
     "silica_pearls": 0,
     "element": 0
+  },
+  "electronics": {
+    "silica_pearls": 0,
+    "metal": 0
+  },
+  "element_shard": {
+    "element": 0.01
   }
 }
