@@ -80,34 +80,32 @@ module.exports = [
   },
   {
     when: ({ itemtype }) => itemtype == "platform_tower",
+    name: "cliffplatform_turret_type",
+    message: gradient.morning("Choose turret type:"),
+    choices: [
+      { name: "Auto Turret", value: "auto_turret" },
+      { name: "Heavy Turret", value: "heavy_turret" },
+      { name: "Tek Turret", value: "tek_turret" },
+      { name: "Plant X Turret", value: "plant_x_turret" },
+    ],
+    type: "list",
+    default: "plant_x", // do stuff here for customizing own prices
+  },
+  {
+    when: ({ itemtype }) => itemtype == "platform_tower",
     name: "turrets_per_cliffplatform_edge",
     message: gradient.morning("How many turrets per platform edge?:"),
     default: 0,
   },
   {
     when: ({ itemtype }) => itemtype == "platform_tower",
-    name: "heavy_turrets",
-    message: gradient.morning("Amount Heavy Turrets:"),
-    default: 0,
-  },
-  {
-    when: ({ heavy_turrets, itemtype }) =>
-      heavy_turrets > 0 && itemtype == "platform_tower",
-    name: "bullets_per_heavy_turret",
-    message: gradient.morning("Bullets per Heavy Turret:"),
-    default: 0,
-  },
-  {
-    when: ({ itemtype }) => itemtype == "platform_tower",
-    name: "tek_turrets",
-    message: gradient.morning("Amount Tek Turrets:"),
-    default: 0,
-  },
-  {
-    when: ({ tek_turrets, itemtype }) =>
-      tek_turrets > 0 && itemtype == "platform_tower",
-    name: "shards_per_tek_turret",
-    message: gradient.morning("Shards per Tek Turret:"),
-    default: 0,
+    name: "turrets_top_and_bottom",
+    message: gradient.morning("Turrets on top and bottom?:"),
+    choices: [
+      { name: "Yes", value: true },
+      { name: "No", value: false },
+    ],
+    type: "list",
+    default: "no", // do stuff here for customizing own prices
   },
 ];

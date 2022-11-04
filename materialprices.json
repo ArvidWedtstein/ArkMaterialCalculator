@@ -2,41 +2,41 @@
   "auto_turret": {
     "gunpowder": 0,
     "metal": 140,
-    "cementing_paste": 100,
+    "Cementing Pasta": 100,
     "polymer": 20,
     "electronics": 70,
-    "silica_pearls": 0,
+    "Silica Pearls": 0,
     "element": 0
   },
   "heavy_turret": {
     "gunpowder": 0,
     "metal": 400,
-    "cementing_paste": 150,
+    "Cementing Pasta": 150,
     "polymer": 50,
     "electronics": 200,
-    "silica_pearls": 0,
+    "Silica Pearls": 0,
     "element": 0
   },
   "tek_turret": {
     "gunpowder": 0,
     "metal": 100,
-    "cementing_paste": 50,
+    "Cementing Pasta": 50,
     "polymer": 50,
     "electronics": 100,
-    "silica_pearls": 0,
+    "Silica Pearls": 0,
     "element": 3
   },
   "advanced_bullet": {
     "gunpowder": 18,
     "metal": 2,
-    "cementing_paste": 0,
+    "Cementing Pasta": 0,
     "polymer": 0,
     "electronics": 0,
-    "silica_pearls": 0,
+    "Silica Pearls": 0,
     "element": 0
   },
   "electronics": {
-    "silica_pearls": 0,
+    "Silica Pearls": 0,
     "metal": 0
   },
   "element_shard": {
