@@ -2,7 +2,7 @@
   "auto_turret": {
     "gunpowder": 0,
     "metal": 140,
-    "Cementing Pasta": 100,
+    "Cementing Pasta": 50,
     "polymer": 20,
     "electronics": 70,
     "Silica Pearls": 0,
@@ -41,5 +41,17 @@
   },
   "element_shard": {
     "element": 0.01
+  },
+  "double_doorframe": {
+    "metal": 20,
+    "Cementing Pasta": 6
+  },
+  "giant_metal_hatchframe": {
+    "metal": 240,
+    "Cementing Pasta": 64
+  },
+  "metal_foundation": {
+    "metal": 50,
+    "Cementing Pasta": 15
   }
 }

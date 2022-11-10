@@ -93,19 +93,60 @@ module.exports = [
   },
   {
     when: ({ itemtype }) => itemtype == "platform_tower",
-    name: "turrets_per_cliffplatform_edge",
+    name: "cliffplatform_turrets_per_cliffplatform_edge",
     message: gradient.morning("How many turrets per platform edge?:"),
     default: 0,
   },
   {
     when: ({ itemtype }) => itemtype == "platform_tower",
-    name: "turrets_top_and_bottom",
+    name: "cliffplatform_turrets_top_and_bottom",
     message: gradient.morning("Turrets on top and bottom?:"),
     choices: [
       { name: "Yes", value: true },
       { name: "No", value: false },
     ],
     type: "list",
-    default: "no", // do stuff here for customizing own prices
+    default: "no",
+  },
+  // Turret Skeleton Tower
+  {
+    when: ({ itemtype }) => itemtype == "turret_tower",
+    name: "turrettower_foundations_width",
+    message: gradient.morning("Turret Cage Foundations Width:"),
+    default: 14,
+  },
+  {
+    when: ({ itemtype }) => itemtype == "turret_tower",
+    name: "turrettower_foundations_length",
+    message: gradient.morning("Turret Cage Foundations Length:"),
+    default: 14,
+  },
+  {
+    when: ({ itemtype }) => itemtype == "turret_tower",
+    name: "turrettower_foundations_height",
+    message: gradient.morning("Turret Cage Height:"),
+    default: 22,
+  },
+  {
+    when: ({ itemtype }) => itemtype == "turret_tower",
+    name: "turrettower_Mid_Part",
+    message: gradient.morning("Mid center part:"),
+    choices: [
+      { name: "Yes", value: true },
+      { name: "No", value: false },
+    ],
+    type: "list",
+    default: true,
+  },
+  {
+    when: ({ itemtype }) => itemtype == "turret_tower",
+    name: "turrettower_Top_Turret_Part",
+    message: gradient.morning("Top Turret part in center?"),
+    choices: [
+      { name: "Yes", value: true },
+      { name: "No", value: false },
+    ],
+    type: "list",
+    default: true,
   },
 ];
