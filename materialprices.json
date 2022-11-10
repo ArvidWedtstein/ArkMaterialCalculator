@@ -41,5 +41,17 @@
   "metal_foundation": {
     "metal": 50,
     "Cementing Pasta": 15
+  },
+  "metal_ceiling": {
+    "metal": 0,
+    "Cementing Pasta": 0
+  },
+  "metal_wall": {
+    "metal": 0,
+    "Cementing Pasta": 0
+  },
+  "giant_metal_trapdoor": {
+    "metal": 0,
+    "Cementing Pasta": 0
   }
 }
