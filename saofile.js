@@ -160,6 +160,7 @@ module.exports = {
         console.table(cost);
       }
     } else if (itemtype == "turret_tower") {
+      // TODO: Add walls and ceilings for generator boxes
       let amountOfDoubleDoorFramesCenter = 8;
       let topTurretHeight = 7;
       let amountTekTurrets = 65;
