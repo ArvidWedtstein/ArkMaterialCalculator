@@ -150,7 +150,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Invite the bot to your server [here](https://discord.com/oauth2/authorize?client_id=787324889634963486&scope=bot&permissions=10200548352)
+Discord: DrunkGerman#5525
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,21 +158,7 @@ Invite the bot to your server [here](https://discord.com/oauth2/authorize?client
 
 ## Acknowledgments
 
-I would like to give credit to these packages / APIs that helped me with this project:
-
-- [Brawlhalla API](https://www.brawlhalla.com/)
-- [Metrologisk Institutt API](https://developer.yr.no/)
-- [Open Weather Map API](https://openweathermap.org/api)
-- [Bring API](https://developer.bring.com/)
-- [ISS Location API](https://wheretheiss.at/w/developer)
-- [Dictionary API](https://dictionaryapi.dev/)
-- [Meme API](https://meme-api.herokuapp.com/)
-- [Discord API](https://discord.com/developers/docs/intro)
-- [NASA API](https://api.nasa.gov/)
-- [Clash Of Clans API](https://developer.clashofclans.com/)
-- [Clash Royale API](https://developer.clashroyale.com/)
-- [Twitch API](https://dev.twitch.tv/docs/api/)
-- [MomentJS](https://momentjs.com/)
+- [EliteArk](https://www.eliteark.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -190,9 +176,7 @@ I would like to give credit to these packages / APIs that helped me with this pr
 [license-url]: https://github.com/ArvidWedtstein/ArkMaterialCalculator/blob/master/LICENSE.txt
 [version-shield]: https://img.shields.io/github/package-json/v/arvidwedtstein/ArkMaterialCalculator?style=for-the-badge
 [version-url]: https://github.com/ArvidWedtstein/ArkMaterialCalculator
-[discordjs]: https://img.shields.io/badge/discord.js-000000?style=for-the-badge&logo=discord&logoColor=white
-[discordjs-url]: https://discord.com/developers/docs/intro
-[mongodb]: https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=white
-[mongodb-url]: https://www.mongodb.com/
+[eliteark]: https://eliteark.com/wp-content/uploads/2022/06/cropped-0_ark-logo.thumb_.png.36427f75c51aff4ecec55bba50fd194d.png
+[eliteark-url]: https://www.eliteark.com/
 
 <!-- DEPLOY: docker build . -t ArkMaterialCalculator -->
