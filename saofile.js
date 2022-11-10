@@ -8,7 +8,7 @@ module.exports = {
   prompts: require("./prompts"),
   async completed() {
     const chalk = this.chalk;
-    const {
+    let {
       defaultprices,
       itemtype,
       auto_turrets,
@@ -27,7 +27,9 @@ module.exports = {
       turrettower_Mid_Part,
       turrettower_Top_Turret_Part,
     } = this.answers;
-
+    turrettower_foundations_width = Number(turrettower_foundations_width);
+    turrettower_foundations_length = Number(turrettower_foundations_length);
+    turrettower_foundations_height = Number(turrettower_foundations_height);
     console.log(chalk`\n🎉  {bold Calculating prices} {cyan ...}\n`);
 
     let auto_turret_cost = {};
@@ -38,48 +40,49 @@ module.exports = {
     let tek_turret_shard_cost = {};
     let total_cost = {};
 
+    const capitalize = (string) =>
+      string.charAt(0).toUpperCase() + string.slice(1);
+
     // TODO: Add support for custom prices
     // TODO: Optimalize this shit
-    /* 
-    TODO: Make some kind of crawling function to get all the prices.
-    Eg. if 1 heavy turret requires a auto turret, it will search if the auto turret exists in pricelist.
-    if it does it will get the cost of the auto turret and add it to the heavy turret cost.
-    { 
-      "auto_turret": {
-        "metal": 100,
-      },
-      "heavy_turret": {
-        auto_turret: 1,
-      }
-    }
-
-    */
-
+    /**
+     *
+     * @param {Number} amount
+     * @param {String} item_type
+     * @returns Object with prices
+     */
     const calcItemCost = (amount, item_type) => {
       if (Number.isNaN(amount)) return console.error("Amount is NaN");
       if (!(item_type in prices))
-        return console.error("Item type not found in prices");
+        return console.error(
+          "\x1b[31m%s\x1b[0m",
+          `[ArkMatCalc Error]: ${item_type} not found in prices`
+        );
       let price = {};
       Object.entries(prices[item_type]).forEach((i) => {
         const [key, val] = i;
-        price[key] = val * Number(amount);
+        if (prices.hasOwnProperty(key)) {
+          price = combineBySummingKeys(calcItemCost(val, key), price);
+        } else {
+          price[`${gradient.vice(capitalize(key))}`] = val * Number(amount);
+        }
       });
       return price;
     };
 
+    // const redToGreen = gradient("red", "green");
+    // const str = "■".repeat(48);
+    // console.log(redToGreen(str));
     if (itemtype == "turrets") {
       if (auto_turrets > 0) {
         auto_turret_cost = calcItemCost(auto_turrets, "auto_turret");
 
-        console.log(gradient.morning("Auto Turrets Cost"));
+        console.log(gradient.retro("Auto Turrets Cost"));
         console.table(auto_turret_cost);
       }
 
       if (heavy_turrets > 0) {
-        let tempautocost = calcItemCost(heavy_turrets, "auto_turret");
-        let tempheavycost = calcItemCost(heavy_turrets, "heavy_turret");
-
-        heavy_turret_cost = combineBySummingKeys(tempautocost, tempheavycost);
+        heavy_turret_cost = calcItemCost(heavy_turrets, "heavy_turret");
 
         console.log(gradient.morning("Heavy Turrets Cost"));
         console.table(heavy_turret_cost);
@@ -142,10 +145,7 @@ module.exports = {
             cost = calcItemCost(turretamount, "auto_turret");
             break;
           case "heavy_turret":
-            cost = combineBySummingKeys(
-              calcItemCost(turretamount, "auto_turret"),
-              calcItemCost(turretamount, "heavy_turret")
-            );
+            cost = calcItemCost(turretamount, "heavy_turret");
             break;
           case "tek_turret":
             cost = calcItemCost(turretamount, "tek_turret");
@@ -185,48 +185,108 @@ module.exports = {
         });
       }
 
-      let foundationsAmount =
-        turrettower_foundations_width * turrettower_foundations_length;
-      let foundationsCost = calcItemCost(foundationsAmount, "metal_foundation");
-      let doubleDoorframeOutsideAmount =
-        (turrettower_foundations_width * 2 +
-          turrettower_foundations_length * 2) *
-        turrettower_foundations_height;
-      let doubleDoorframeOutsideCost = calcItemCost(
-        doubleDoorframeOutsideAmount,
-        "double_doorframe"
-      );
-      let doubleDoorframeMidAmount =
-        amountOfDoubleDoorFramesCenter * turrettower_Mid_Part
-          ? turrettower_foundations_height
-          : 0;
-      let doubleDoorframeTopAmount =
-        amountOfDoubleDoorFramesCenter * turrettower_Top_Turret_Part
-          ? topTurretHeight
-          : 0;
-      let giantHatchframesPerLayerAmount =
-        (turrettower_foundations_width * 2 +
-          turrettower_foundations_length * 2) /
-        4; // divide by 4 because one giant hatchframe is 2x2 foundations
+      const Area = (width, length) => width * length;
+      const amountCenterPartDoorframes = (doorFramesPerLayer) => {
+        return (
+          doorFramesPerLayer *
+          Number(
+            `${
+              turrettower_Mid_Part
+                ? turrettower_foundations_height +
+                  Number(turrettower_Top_Turret_Part ? topTurretHeight : 0)
+                : 0
+            }`
+          )
+        );
+      };
 
-      let giantHatchframeAmountBottom =
-        giantHatchframesPerLayerAmount * 3 - turrettower_Mid_Part ? 3 : 0; // -3 if mid part, because the bottom layers don't have the center hatchframe
+      let foundationsAmount = Area(
+        turrettower_foundations_width,
+        turrettower_foundations_length
+      );
+
+      let doubleDoorframeOutsideAmount =
+        (turrettower_foundations_width + turrettower_foundations_length) *
+        2 *
+        turrettower_foundations_height;
+
+      let doubleDoorframeCenterAmount = amountCenterPartDoorframes(
+        amountOfDoubleDoorFramesCenter
+      );
+
+      let giantHatchframesPerLayerAmount = foundationsAmount / 4; // divide by 4 because one giant hatchframe is 2x2 foundations
+
+      /**
+       *
+       * @param {Number} layers
+       * @returns Number of hatchframes needed for the given amount of layers
+       */
+      const amountHatchframesPerLayer = (layers) => {
+        return (
+          (giantHatchframesPerLayerAmount -
+            Number(turrettower_Mid_Part ? 1 : 0)) *
+          layers
+        );
+      };
+      let giantHatchframeAmountLayers = amountHatchframesPerLayer(4); // 3 bottom layers + 1 top layer
 
       /* 
       TODO: Calculate if one of the levels have generator box or center turret. If so, add 1 to the amount. 
       */
-      let giantHatchframeTurretLayerCenterAmount = turrettower_Mid_Part
-        ? giantHatchframesPerLayerAmount * turretRingLevels.length
+      let giantHatchframesCenterAmount = turrettower_Mid_Part
+        ? 8 * turretRingLevels.length
         : 0;
 
       // TODO: Calculate hatchframes edges per turret layer for amount of turrets
       // Loop trough turretRingLevels and add one tek turret if hasGenerator is true since generator should have one turret beneath it
-      const calcTurret = () => {
+      // calculate amount of double doorframs per layer and plus 4 for edges.
+      const calcTurretsPerLayerCenter = () => {
         let perSide = 3;
         let turretPerSide = perSide * 2;
         let turretTotal = (turretPerSide * 4) / 2;
         return turretTotal;
       };
+
+      console.table({
+        [`Foundations (\x1b[31m${foundationsAmount}\x1b[0m)`]: calcItemCost(
+          foundationsAmount,
+          "metal_foundation"
+        ),
+        [`Double Doorframes (\x1b[31m${
+          doubleDoorframeOutsideAmount + doubleDoorframeCenterAmount
+        }\x1b[0m)`]: calcItemCost(
+          doubleDoorframeOutsideAmount + doubleDoorframeCenterAmount,
+          "double_doorframe"
+        ),
+        [`Giant Hatchframes (\x1b[31m${
+          giantHatchframeAmountLayers + giantHatchframesCenterAmount
+        }\x1b[0m)`]: calcItemCost(
+          giantHatchframeAmountLayers + giantHatchframesCenterAmount,
+          "giant_metal_hatchframe"
+        ),
+        [`Heavy Turrets (\x1b[31m${amountHeavyTurrets}\x1b[0m)`]: calcItemCost(
+          amountHeavyTurrets,
+          "heavy_turret"
+        ),
+        [`Tek Turrets (\x1b[31m${amountTekTurrets}\x1b[0m)`]: calcItemCost(
+          amountTekTurrets,
+          "tek_turret"
+        ),
+        [""]: {},
+        [`Total Cost`]: combineBySummingKeys(
+          calcItemCost(foundationsAmount, "metal_foundation"),
+          calcItemCost(
+            doubleDoorframeOutsideAmount + doubleDoorframeCenterAmount,
+            "double_doorframe"
+          ),
+          calcItemCost(
+            giantHatchframeAmountLayers + giantHatchframesCenterAmount,
+            "giant_metal_hatchframe"
+          ),
+          calcItemCost(amountHeavyTurrets, "heavy_turret"),
+          calcItemCost(amountTekTurrets, "tek_turret")
+        ),
+      });
     }
   },
 };
