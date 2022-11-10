@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ArvidWedtstein/ArkMaterialCalculator">
-    <img src="img/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://eliteark.com/wp-content/uploads/2022/06/cropped-0_ark-logo.thumb_.png.36427f75c51aff4ecec55bba50fd194d.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Ark Material Calculator</h3>
@@ -176,7 +176,4 @@ Discord: DrunkGerman#5525
 [license-url]: https://github.com/ArvidWedtstein/ArkMaterialCalculator/blob/master/LICENSE.txt
 [version-shield]: https://img.shields.io/github/package-json/v/arvidwedtstein/ArkMaterialCalculator?style=for-the-badge
 [version-url]: https://github.com/ArvidWedtstein/ArkMaterialCalculator
-[eliteark]: https://eliteark.com/wp-content/uploads/2022/06/cropped-0_ark-logo.thumb_.png.36427f75c51aff4ecec55bba50fd194d.png
-[eliteark-url]: https://www.eliteark.com/
-
-<!-- DEPLOY: docker build . -t ArkMaterialCalculator -->
+[eliteark]: https://eliteark.com/wp-content/uploads/2022/06/cropped-0_ark-logo.
